@@ -1,0 +1,32 @@
+name: Daily IPL Data Update
+
+on:
+  schedule:
+    # Runs at 00:30 UTC (6:00 AM IST) every day
+    - cron: '30 0 * * *'
+  workflow_dispatch: # Allows you to run it manually from the GitHub website
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run update script
+        run: npm run update-data
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add public/data/ipl2026.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: Daily IPL Standings" && git push)
