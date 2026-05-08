@@ -2,8 +2,8 @@ name: Daily IPL Data Update
 
 on:
   schedule:
-    # Runs at 00:30 UTC (6:00 AM IST) every day
-    - cron: '30 0 * * *'
+    # Runs at 18:30 UTC (12:00 AM IST) every night
+    - cron: '30 18 * * *'
   workflow_dispatch: # Allows you to run it manually from the GitHub website
 
 jobs:

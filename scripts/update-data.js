@@ -31,76 +31,73 @@ const TEAMS_META = {
 };
 
 async function fetchPointsTable() {
-  // Scrape from a public, CORS-friendly source
-  // Using the ESPN Cricinfo API endpoint pattern
-  try {
-    // Try ESPNCricinfo series standings endpoint
-    const url = 'https://hs-consumer-api.espncricinfo.com/v1/pages/series/standings?lang=en&seriesId=1497672';
-    const res = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Accept': 'application/json',
-      }
-    });
+  const apiKey = '3edd77d2-fc1e-435a-b2fc-ea6ebf966d85';
+  const apiHost = 'cricket-highlights-api.p.rapidapi.com';
+  const headers = {
+    'x-rapidapi-key': apiKey,
+    'x-rapidapi-host': apiHost
+  };
 
-    if (res.ok) {
-      const data = await res.json();
-      return parseESPNStandings(data);
+  try {
+    // 1. Get League ID for Indian Premier League
+    console.log('Fetching League ID for Indian Premier League...');
+    const leagueRes = await fetch(`https://${apiHost}/leagues?name=Indian%20Premier%20League`, { headers });
+    if (!leagueRes.ok) throw new Error(`Failed to fetch leagues: ${leagueRes.status}`);
+    
+    const leagueData = await leagueRes.json();
+    const iplLeague = leagueData.data.find(l => l.name === 'Indian Premier League' || l.name.includes('Indian Premier'));
+    
+    if (!iplLeague) {
+      console.error('Could not find Indian Premier League in API response.');
+      return null;
     }
+    
+    const leagueId = iplLeague.id;
+    console.log(`Found IPL League ID: ${leagueId}`);
+
+    // 2. Get Standings
+    console.log('Fetching Standings...');
+    const standingsRes = await fetch(`https://${apiHost}/standings?leagueId=${leagueId}&season=2026`, { headers });
+    if (!standingsRes.ok) throw new Error(`Failed to fetch standings: ${standingsRes.status}`);
+    
+    const standingsData = await standingsRes.json();
+    return parseHighlightyStandings(standingsData);
+
   } catch (e) {
-    console.log('ESPN API failed, trying Cricbuzz...');
-  }
-
-  // Fallback: try alternate approach
-  try {
-    const url = 'https://www.cricbuzz.com/api/html/cricket-scorecard-commentary/series/9237/points-table';
-    const res = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-      }
-    });
-
-    if (res.ok) {
-      const text = await res.text();
-      return parseCricbuzzStandings(text);
-    }
-  } catch (e) {
-    console.log('Cricbuzz also failed.');
-  }
-
-  return null;
-}
-
-function parseESPNStandings(data) {
-  // ESPN Cricinfo API response parser
-  try {
-    const standings = data?.content?.standings?.groups?.[0]?.teamStats || [];
-    return standings.map(ts => {
-      const teamName = ts.teamInfo?.name || '';
-      const teamId = findTeamId(teamName);
-      return {
-        id: teamId,
-        name: TEAMS_META[teamId]?.name || teamName,
-        shortName: TEAMS_META[teamId]?.shortName || ts.teamInfo?.abbreviation || '',
-        played: ts.matchesPlayed || 0,
-        won: ts.matchesWon || 0,
-        lost: ts.matchesLost || 0,
-        noResult: ts.noResult || 0,
-        points: ts.points || 0,
-        nrr: parseFloat(ts.nrr) || 0,
-      };
-    }).filter(t => t.id);
-  } catch (e) {
-    console.error('Failed to parse ESPN data:', e);
+    console.error('Error fetching data from Highlighty API:', e);
     return null;
   }
 }
 
-function parseCricbuzzStandings(html) {
-  // Basic HTML parser for Cricbuzz points table
-  // This is fragile — only used as fallback
-  console.log('Cricbuzz HTML parsing not fully implemented. Using cached data.');
-  return null;
+function parseHighlightyStandings(data) {
+  try {
+    // The API might return an array of groups, usually IPL is in a single group
+    // Adjust based on the actual API structure, assuming it returns data inside a 'data' array
+    // Example: {"data": [ { "team": { "name": "...", ... }, "points": 14, "played": 11, ... } ]}
+    
+    const standingsList = Array.isArray(data.data) ? data.data : data;
+    
+    return standingsList.map(ts => {
+      // Highlighty team object might be inside a 'team' property
+      const teamName = ts.team?.name || ts.name || '';
+      const teamId = findTeamId(teamName);
+      
+      return {
+        id: teamId,
+        name: TEAMS_META[teamId]?.name || teamName,
+        shortName: TEAMS_META[teamId]?.shortName || ts.team?.abbreviation || ts.abbreviation || '',
+        played: parseInt(ts.matchesPlayed || ts.played || 0),
+        won: parseInt(ts.matchesWon || ts.won || 0),
+        lost: parseInt(ts.matchesLost || ts.lost || 0),
+        noResult: parseInt(ts.noResult || ts.nr || ts.draws || 0),
+        points: parseInt(ts.points || 0),
+        nrr: parseFloat(ts.netRunRate || ts.nrr || 0),
+      };
+    }).filter(t => t.id); // Filter out unmapped teams
+  } catch (e) {
+    console.error('Failed to parse Highlighty data:', e);
+    return null;
+  }
 }
 
 function findTeamId(name) {

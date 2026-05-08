@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-07T00:00:00+05:30",
+  "lastUpdated": "2026-05-08T11:00:00+05:30",
   "season": "IPL 2026",
   "teams": [
     {
@@ -28,12 +28,12 @@
       "id": "rcb",
       "name": "Royal Challengers Bengaluru",
       "shortName": "RCB",
-      "played": 9,
+      "played": 10,
       "won": 6,
-      "lost": 3,
+      "lost": 4,
       "noResult": 0,
       "points": 12,
-      "nrr": 1.420
+      "nrr": 1.250
     },
     {
       "id": "rr",
@@ -91,6 +91,17 @@
       "nrr": -0.539
     },
     {
+      "id": "lsg",
+      "name": "Lucknow Super Giants",
+      "shortName": "LSG",
+      "played": 10,
+      "won": 3,
+      "lost": 7,
+      "noResult": 0,
+      "points": 6,
+      "nrr": -0.950
+    },
+    {
       "id": "mi",
       "name": "Mumbai Indians",
       "shortName": "MI",
@@ -100,21 +111,9 @@
       "noResult": 0,
       "points": 6,
       "nrr": -0.649
-    },
-    {
-      "id": "lsg",
-      "name": "Lucknow Super Giants",
-      "shortName": "LSG",
-      "played": 9,
-      "won": 2,
-      "lost": 7,
-      "noResult": 0,
-      "points": 4,
-      "nrr": -1.076
     }
   ],
   "remainingMatches": [
-    { "id": "m50", "date": "2026-05-07", "team1": "lsg", "team2": "rcb", "venue": "Lucknow" },
     { "id": "m51", "date": "2026-05-08", "team1": "dc", "team2": "kkr", "venue": "Delhi" },
     { "id": "m52", "date": "2026-05-09", "team1": "rr", "team2": "gt", "venue": "Jaipur" },
     { "id": "m53", "date": "2026-05-10", "team1": "csk", "team2": "lsg", "venue": "Chennai" },
