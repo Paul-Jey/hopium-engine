@@ -11,7 +11,7 @@
       "lost": 5,
       "noResult": 0,
       "points": 12,
-      "nrr": 0.151
+      "nrr": 0.185
     },
     {
       "id": "dc",
@@ -22,7 +22,7 @@
       "lost": 7,
       "noResult": 0,
       "points": 8,
-      "nrr": -0.949
+      "nrr": -1.154
     },
     {
       "id": "gt",
@@ -33,29 +33,29 @@
       "lost": 4,
       "noResult": 0,
       "points": 14,
-      "nrr": -0.147
+      "nrr": 0.228
     },
     {
       "id": "kkr",
       "name": "Kolkata Knight Riders",
       "shortName": "KKR",
       "played": 10,
-      "won": 3,
+      "won": 4,
       "lost": 5,
-      "noResult": 2,
-      "points": 8,
-      "nrr": -0.539
+      "noResult": 1,
+      "points": 9,
+      "nrr": -0.169
     },
     {
       "id": "lsg",
       "name": "Lucknow Super Giants",
       "shortName": "LSG",
       "played": 11,
-      "won": 2,
+      "won": 3,
       "lost": 8,
-      "noResult": 1,
-      "points": 5,
-      "nrr": -0.95
+      "noResult": 0,
+      "points": 6,
+      "nrr": -0.907
     },
     {
       "id": "mi",
@@ -66,7 +66,7 @@
       "lost": 8,
       "noResult": 0,
       "points": 6,
-      "nrr": -0.649
+      "nrr": -0.585
     },
     {
       "id": "pbks",
@@ -80,15 +80,15 @@
       "nrr": 0.571
     },
     {
-      "id": "rcb",
-      "name": "Royal Challengers Bengaluru",
-      "shortName": "RCB",
+      "id": "rr",
+      "name": "Rajasthan Royals",
+      "shortName": "RR",
       "played": 11,
       "won": 6,
       "lost": 5,
       "noResult": 0,
       "points": 12,
-      "nrr": 1.25
+      "nrr": 0.082
     },
     {
       "id": "rcb",
@@ -99,7 +99,7 @@
       "lost": 4,
       "noResult": 0,
       "points": 14,
-      "nrr": 1.25
+      "nrr": 1.103
     },
     {
       "id": "srh",
