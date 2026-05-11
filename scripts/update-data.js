@@ -30,72 +30,65 @@ const TEAMS_META = {
   lsg:  { name: 'Lucknow Super Giants', shortName: 'LSG' },
 };
 
-async function fetchPointsTable() {
-  const apiKey = '3edd77d2-fc1e-435a-b2fc-ea6ebf966d85';
-  const apiHost = 'cricket-highlights-api.p.rapidapi.com';
-  const headers = {
-    'x-rapidapi-key': apiKey,
-    'x-rapidapi-host': apiHost
-  };
+async function fetchPointsTable(existingData) {
+  const apiKey = 'ccb921ce-bd11-4749-aeb5-c1690182b6b3';
+  const seriesId = '87c62aac-bc3c-4738-ab93-19da0690488f'; // Indian Premier League 2026
 
   try {
-    // 1. Get League ID for Indian Premier League
-    console.log('Fetching League ID for Indian Premier League...');
-    const leagueRes = await fetch(`https://${apiHost}/leagues?name=Indian%20Premier%20League`, { headers });
-    if (!leagueRes.ok) throw new Error(`Failed to fetch leagues: ${leagueRes.status}`);
-    
-    const leagueData = await leagueRes.json();
-    const iplLeague = leagueData.data.find(l => l.name === 'Indian Premier League' || l.name.includes('Indian Premier'));
-    
-    if (!iplLeague) {
-      console.error('Could not find Indian Premier League in API response.');
-      return null;
-    }
-    
-    const leagueId = iplLeague.id;
-    console.log(`Found IPL League ID: ${leagueId}`);
-
-    // 2. Get Standings
-    console.log('Fetching Standings...');
-    const standingsRes = await fetch(`https://${apiHost}/standings?leagueId=${leagueId}&season=2026`, { headers });
+    console.log('Fetching Standings from CricAPI...');
+    const standingsRes = await fetch(`https://api.cricapi.com/v1/series_points?id=${seriesId}&apikey=${apiKey}`);
     if (!standingsRes.ok) throw new Error(`Failed to fetch standings: ${standingsRes.status}`);
     
     const standingsData = await standingsRes.json();
-    return parseHighlightyStandings(standingsData);
+    
+    if (standingsData.status !== 'success') {
+      throw new Error(`CricAPI returned failure: ${standingsData.reason || 'Unknown error'}`);
+    }
+
+    return parseCricApiStandings(standingsData.data, existingData);
 
   } catch (e) {
-    console.error('Error fetching data from Highlighty API:', e);
+    console.error('Error fetching data from CricAPI:', e);
     return null;
   }
 }
 
-function parseHighlightyStandings(data) {
+function parseCricApiStandings(dataList, existingData) {
   try {
-    // The API might return an array of groups, usually IPL is in a single group
-    // Adjust based on the actual API structure, assuming it returns data inside a 'data' array
-    // Example: {"data": [ { "team": { "name": "...", ... }, "points": 14, "played": 11, ... } ]}
-    
-    const standingsList = Array.isArray(data.data) ? data.data : data;
-    
-    return standingsList.map(ts => {
-      // Highlighty team object might be inside a 'team' property
-      const teamName = ts.team?.name || ts.name || '';
-      const teamId = findTeamId(teamName);
+    return dataList.map(ts => {
+      const teamName = ts.teamname || '';
+      let teamId = findTeamId(teamName);
+      
+      // Fallback: the API might use 'RCBW' for RCB, so handle that edge case
+      if (ts.shortname === 'RCBW' || teamName.includes('Bengaluru')) teamId = 'rcb';
+      
+      // Extract the existing NRR since CricAPI doesn't provide it
+      const existingTeamInfo = existingData.teams ? existingData.teams.find(t => t.id === teamId) : {};
+      const nrr = existingTeamInfo ? (existingTeamInfo.nrr || 0) : 0;
+      
+      const played = parseInt(ts.matches || 0);
+      const won = parseInt(ts.wins || 0);
+      const lost = parseInt(ts.loss || 0);
+      const nr = parseInt(ts.nr || 0);
+      const ties = parseInt(ts.ties || 0);
+      
+      // Calculate points manually (2 per win, 1 per tie/nr)
+      const points = (won * 2) + (ties * 1) + (nr * 1);
       
       return {
         id: teamId,
         name: TEAMS_META[teamId]?.name || teamName,
-        shortName: TEAMS_META[teamId]?.shortName || ts.team?.abbreviation || ts.abbreviation || '',
-        played: parseInt(ts.matchesPlayed || ts.played || 0),
-        won: parseInt(ts.matchesWon || ts.won || 0),
-        lost: parseInt(ts.matchesLost || ts.lost || 0),
-        noResult: parseInt(ts.noResult || ts.nr || ts.draws || 0),
-        points: parseInt(ts.points || 0),
-        nrr: parseFloat(ts.netRunRate || ts.nrr || 0),
+        shortName: TEAMS_META[teamId]?.shortName || ts.shortname || '',
+        played: played,
+        won: won,
+        lost: lost,
+        noResult: nr + ties, // Combine ties and NR for simplicity
+        points: points,
+        nrr: nrr,
       };
     }).filter(t => t.id); // Filter out unmapped teams
   } catch (e) {
-    console.error('Failed to parse Highlighty data:', e);
+    console.error('Failed to parse CricAPI data:', e);
     return null;
   }
 }
@@ -112,15 +105,16 @@ function findTeamId(name) {
 async function update() {
   console.log(`[${new Date().toISOString()}] Updating IPL data...`);
 
+  // Load existing data first so we can preserve NRR
+  let existingData = {};
+  if (existsSync(DATA_PATH)) {
+    existingData = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
+  }
+
   // Try to fetch live data
-  const liveStandings = await fetchPointsTable();
+  const liveStandings = await fetchPointsTable(existingData);
 
   if (liveStandings && liveStandings.length === 10) {
-    // Load existing data to preserve remaining matches
-    let existingData = {};
-    if (existsSync(DATA_PATH)) {
-      existingData = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
-    }
 
     // Filter out completed matches (where the date has passed)
     const today = new Date().toISOString().split('T')[0];

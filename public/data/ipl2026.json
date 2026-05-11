@@ -1,17 +1,72 @@
 {
-  "lastUpdated": "2026-05-08T11:00:00+05:30",
+  "lastUpdated": "2026-05-11T16:43:32.982Z",
   "season": "IPL 2026",
   "teams": [
     {
-      "id": "srh",
-      "name": "Sunrisers Hyderabad",
-      "shortName": "SRH",
+      "id": "csk",
+      "name": "Chennai Super Kings",
+      "shortName": "CSK",
+      "played": 11,
+      "won": 6,
+      "lost": 5,
+      "noResult": 0,
+      "points": 12,
+      "nrr": 0.151
+    },
+    {
+      "id": "dc",
+      "name": "Delhi Capitals",
+      "shortName": "DC",
+      "played": 11,
+      "won": 4,
+      "lost": 7,
+      "noResult": 0,
+      "points": 8,
+      "nrr": -0.949
+    },
+    {
+      "id": "gt",
+      "name": "Gujarat Titans",
+      "shortName": "GT",
       "played": 11,
       "won": 7,
       "lost": 4,
       "noResult": 0,
       "points": 14,
-      "nrr": 0.737
+      "nrr": -0.147
+    },
+    {
+      "id": "kkr",
+      "name": "Kolkata Knight Riders",
+      "shortName": "KKR",
+      "played": 10,
+      "won": 3,
+      "lost": 5,
+      "noResult": 2,
+      "points": 8,
+      "nrr": -0.539
+    },
+    {
+      "id": "lsg",
+      "name": "Lucknow Super Giants",
+      "shortName": "LSG",
+      "played": 11,
+      "won": 2,
+      "lost": 8,
+      "noResult": 1,
+      "points": 5,
+      "nrr": -0.95
+    },
+    {
+      "id": "mi",
+      "name": "Mumbai Indians",
+      "shortName": "MI",
+      "played": 11,
+      "won": 3,
+      "lost": 8,
+      "noResult": 0,
+      "points": 6,
+      "nrr": -0.649
     },
     {
       "id": "pbks",
@@ -28,111 +83,148 @@
       "id": "rcb",
       "name": "Royal Challengers Bengaluru",
       "shortName": "RCB",
-      "played": 10,
+      "played": 11,
       "won": 6,
-      "lost": 4,
-      "noResult": 0,
-      "points": 12,
-      "nrr": 1.250
-    },
-    {
-      "id": "rr",
-      "name": "Rajasthan Royals",
-      "shortName": "RR",
-      "played": 10,
-      "won": 6,
-      "lost": 4,
-      "noResult": 0,
-      "points": 12,
-      "nrr": 0.510
-    },
-    {
-      "id": "gt",
-      "name": "Gujarat Titans",
-      "shortName": "GT",
-      "played": 10,
-      "won": 6,
-      "lost": 4,
-      "noResult": 0,
-      "points": 12,
-      "nrr": -0.147
-    },
-    {
-      "id": "csk",
-      "name": "Chennai Super Kings",
-      "shortName": "CSK",
-      "played": 10,
-      "won": 5,
       "lost": 5,
       "noResult": 0,
-      "points": 10,
-      "nrr": 0.151
+      "points": 12,
+      "nrr": 1.25
     },
     {
-      "id": "dc",
-      "name": "Delhi Capitals",
-      "shortName": "DC",
-      "played": 10,
-      "won": 4,
-      "lost": 6,
+      "id": "rcb",
+      "name": "Royal Challengers Bengaluru",
+      "shortName": "RCB",
+      "played": 11,
+      "won": 7,
+      "lost": 4,
       "noResult": 0,
-      "points": 8,
-      "nrr": -0.949
+      "points": 14,
+      "nrr": 1.25
     },
     {
-      "id": "kkr",
-      "name": "Kolkata Knight Riders",
-      "shortName": "KKR",
-      "played": 9,
-      "won": 3,
-      "lost": 5,
-      "noResult": 1,
-      "points": 7,
-      "nrr": -0.539
-    },
-    {
-      "id": "lsg",
-      "name": "Lucknow Super Giants",
-      "shortName": "LSG",
-      "played": 10,
-      "won": 3,
-      "lost": 7,
+      "id": "srh",
+      "name": "Sunrisers Hyderabad",
+      "shortName": "SRH",
+      "played": 11,
+      "won": 7,
+      "lost": 4,
       "noResult": 0,
-      "points": 6,
-      "nrr": -0.950
-    },
-    {
-      "id": "mi",
-      "name": "Mumbai Indians",
-      "shortName": "MI",
-      "played": 10,
-      "won": 3,
-      "lost": 7,
-      "noResult": 0,
-      "points": 6,
-      "nrr": -0.649
+      "points": 14,
+      "nrr": 0.737
     }
   ],
   "remainingMatches": [
-    { "id": "m51", "date": "2026-05-08", "team1": "dc", "team2": "kkr", "venue": "Delhi" },
-    { "id": "m52", "date": "2026-05-09", "team1": "rr", "team2": "gt", "venue": "Jaipur" },
-    { "id": "m53", "date": "2026-05-10", "team1": "csk", "team2": "lsg", "venue": "Chennai" },
-    { "id": "m54", "date": "2026-05-10", "team1": "rcb", "team2": "mi", "venue": "Raipur" },
-    { "id": "m55", "date": "2026-05-11", "team1": "pbks", "team2": "dc", "venue": "Dharamshala" },
-    { "id": "m56", "date": "2026-05-12", "team1": "gt", "team2": "srh", "venue": "Ahmedabad" },
-    { "id": "m57", "date": "2026-05-13", "team1": "rcb", "team2": "kkr", "venue": "Raipur" },
-    { "id": "m58", "date": "2026-05-14", "team1": "pbks", "team2": "mi", "venue": "Dharamshala" },
-    { "id": "m59", "date": "2026-05-15", "team1": "lsg", "team2": "csk", "venue": "Lucknow" },
-    { "id": "m60", "date": "2026-05-16", "team1": "kkr", "team2": "gt", "venue": "Kolkata" },
-    { "id": "m61", "date": "2026-05-17", "team1": "pbks", "team2": "rcb", "venue": "Dharamshala" },
-    { "id": "m62", "date": "2026-05-17", "team1": "dc", "team2": "rr", "venue": "Delhi" },
-    { "id": "m63", "date": "2026-05-18", "team1": "csk", "team2": "srh", "venue": "Chennai" },
-    { "id": "m64", "date": "2026-05-19", "team1": "rr", "team2": "lsg", "venue": "Jaipur" },
-    { "id": "m65", "date": "2026-05-20", "team1": "kkr", "team2": "mi", "venue": "Kolkata" },
-    { "id": "m66", "date": "2026-05-21", "team1": "gt", "team2": "csk", "venue": "Ahmedabad" },
-    { "id": "m67", "date": "2026-05-22", "team1": "srh", "team2": "rcb", "venue": "Hyderabad" },
-    { "id": "m68", "date": "2026-05-23", "team1": "lsg", "team2": "pbks", "venue": "Lucknow" },
-    { "id": "m69", "date": "2026-05-24", "team1": "mi", "team2": "rr", "venue": "Mumbai" },
-    { "id": "m70", "date": "2026-05-24", "team1": "kkr", "team2": "dc", "venue": "Kolkata" }
+    {
+      "id": "m55",
+      "date": "2026-05-11",
+      "team1": "pbks",
+      "team2": "dc",
+      "venue": "Dharamshala"
+    },
+    {
+      "id": "m56",
+      "date": "2026-05-12",
+      "team1": "gt",
+      "team2": "srh",
+      "venue": "Ahmedabad"
+    },
+    {
+      "id": "m57",
+      "date": "2026-05-13",
+      "team1": "rcb",
+      "team2": "kkr",
+      "venue": "Raipur"
+    },
+    {
+      "id": "m58",
+      "date": "2026-05-14",
+      "team1": "pbks",
+      "team2": "mi",
+      "venue": "Dharamshala"
+    },
+    {
+      "id": "m59",
+      "date": "2026-05-15",
+      "team1": "lsg",
+      "team2": "csk",
+      "venue": "Lucknow"
+    },
+    {
+      "id": "m60",
+      "date": "2026-05-16",
+      "team1": "kkr",
+      "team2": "gt",
+      "venue": "Kolkata"
+    },
+    {
+      "id": "m61",
+      "date": "2026-05-17",
+      "team1": "pbks",
+      "team2": "rcb",
+      "venue": "Dharamshala"
+    },
+    {
+      "id": "m62",
+      "date": "2026-05-17",
+      "team1": "dc",
+      "team2": "rr",
+      "venue": "Delhi"
+    },
+    {
+      "id": "m63",
+      "date": "2026-05-18",
+      "team1": "csk",
+      "team2": "srh",
+      "venue": "Chennai"
+    },
+    {
+      "id": "m64",
+      "date": "2026-05-19",
+      "team1": "rr",
+      "team2": "lsg",
+      "venue": "Jaipur"
+    },
+    {
+      "id": "m65",
+      "date": "2026-05-20",
+      "team1": "kkr",
+      "team2": "mi",
+      "venue": "Kolkata"
+    },
+    {
+      "id": "m66",
+      "date": "2026-05-21",
+      "team1": "gt",
+      "team2": "csk",
+      "venue": "Ahmedabad"
+    },
+    {
+      "id": "m67",
+      "date": "2026-05-22",
+      "team1": "srh",
+      "team2": "rcb",
+      "venue": "Hyderabad"
+    },
+    {
+      "id": "m68",
+      "date": "2026-05-23",
+      "team1": "lsg",
+      "team2": "pbks",
+      "venue": "Lucknow"
+    },
+    {
+      "id": "m69",
+      "date": "2026-05-24",
+      "team1": "mi",
+      "team2": "rr",
+      "venue": "Mumbai"
+    },
+    {
+      "id": "m70",
+      "date": "2026-05-24",
+      "team1": "kkr",
+      "team2": "dc",
+      "venue": "Kolkata"
+    }
   ]
 }
