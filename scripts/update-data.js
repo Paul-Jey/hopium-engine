@@ -115,12 +115,32 @@ async function update() {
   const liveStandings = await fetchPointsTable(existingData);
 
   if (liveStandings && liveStandings.length === 10) {
+    // Also fetch match list to see which matches ended
+    let endedMatchIds = [];
+    try {
+      const apiKey = 'ccb921ce-bd11-4749-aeb5-c1690182b6b3';
+      const seriesId = '87c62aac-bc3c-4738-ab93-19da0690488f';
+      const infoRes = await fetch(`https://api.cricapi.com/v1/series_info?id=${seriesId}&apikey=${apiKey}`);
+      if (infoRes.ok) {
+        const infoData = await infoRes.json();
+        if (infoData && infoData.data && infoData.data.matchList) {
+          endedMatchIds = infoData.data.matchList
+            .filter(m => m.matchEnded === true)
+            .map(m => m.id);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to fetch match list for fixture filtering:', e);
+    }
 
-    // Filter out completed matches (where the date has passed)
-    const today = new Date().toISOString().split('T')[0];
-    const remainingMatches = (existingData.remainingMatches || []).filter(
-      m => m.date >= today
-    );
+    // Filter out matches that have ended or where the date has passed
+    // We use Asia/Kolkata timezone because the tournament and the cron job follow IST
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+    const remainingMatches = (existingData.remainingMatches || []).filter(m => {
+      // If we have the match ID, check if it's in the ended list
+      const hasEnded = endedMatchIds.includes(m.id);
+      return !hasEnded && m.date >= today;
+    });
 
     const newData = {
       lastUpdated: new Date().toISOString(),
