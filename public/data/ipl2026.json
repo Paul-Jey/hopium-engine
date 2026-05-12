@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-11T20:16:57.655Z",
+  "lastUpdated": "2026-05-12T20:15:15.368Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -28,11 +28,11 @@
       "id": "gt",
       "name": "Gujarat Titans",
       "shortName": "GT",
-      "played": 11,
-      "won": 7,
+      "played": 12,
+      "won": 8,
       "lost": 4,
       "noResult": 0,
-      "points": 14,
+      "points": 16,
       "nrr": 0.228
     },
     {
@@ -105,22 +105,15 @@
       "id": "srh",
       "name": "Sunrisers Hyderabad",
       "shortName": "SRH",
-      "played": 11,
+      "played": 12,
       "won": 7,
-      "lost": 4,
+      "lost": 5,
       "noResult": 0,
       "points": 14,
       "nrr": 0.737
     }
   ],
   "remainingMatches": [
-    {
-      "id": "m56",
-      "date": "2026-05-12",
-      "team1": "gt",
-      "team2": "srh",
-      "venue": "Ahmedabad"
-    },
     {
       "id": "m57",
       "date": "2026-05-13",
