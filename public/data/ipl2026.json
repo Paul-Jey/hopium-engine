@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-12T20:15:15.368Z",
+  "lastUpdated": "2026-05-13T20:17:28.244Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -39,9 +39,9 @@
       "id": "kkr",
       "name": "Kolkata Knight Riders",
       "shortName": "KKR",
-      "played": 10,
+      "played": 11,
       "won": 3,
-      "lost": 5,
+      "lost": 6,
       "noResult": 2,
       "points": 8,
       "nrr": -0.169
@@ -94,11 +94,11 @@
       "id": "rcb",
       "name": "Royal Challengers Bengaluru",
       "shortName": "RCB",
-      "played": 11,
-      "won": 7,
+      "played": 12,
+      "won": 8,
       "lost": 4,
       "noResult": 0,
-      "points": 14,
+      "points": 16,
       "nrr": 1.103
     },
     {
@@ -114,13 +114,6 @@
     }
   ],
   "remainingMatches": [
-    {
-      "id": "m57",
-      "date": "2026-05-13",
-      "team1": "rcb",
-      "team2": "kkr",
-      "venue": "Raipur"
-    },
     {
       "id": "m58",
       "date": "2026-05-14",
