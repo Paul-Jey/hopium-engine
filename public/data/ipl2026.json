@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-13T20:17:28.244Z",
+  "lastUpdated": "2026-05-14T20:14:05.851Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -61,20 +61,20 @@
       "id": "mi",
       "name": "Mumbai Indians",
       "shortName": "MI",
-      "played": 11,
-      "won": 3,
+      "played": 12,
+      "won": 4,
       "lost": 8,
       "noResult": 0,
-      "points": 6,
+      "points": 8,
       "nrr": -0.585
     },
     {
       "id": "pbks",
       "name": "Punjab Kings",
       "shortName": "PBKS",
-      "played": 11,
+      "played": 12,
       "won": 6,
-      "lost": 4,
+      "lost": 5,
       "noResult": 1,
       "points": 13,
       "nrr": 0.571
@@ -114,13 +114,6 @@
     }
   ],
   "remainingMatches": [
-    {
-      "id": "m58",
-      "date": "2026-05-14",
-      "team1": "pbks",
-      "team2": "mi",
-      "venue": "Dharamshala"
-    },
     {
       "id": "m59",
       "date": "2026-05-15",
