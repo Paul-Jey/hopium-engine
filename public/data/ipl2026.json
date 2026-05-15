@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-15T14:25:17.257Z",
+  "lastUpdated": "2026-05-15T20:01:10.663Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -114,13 +114,6 @@
     }
   ],
   "remainingMatches": [
-    {
-      "id": "m59",
-      "date": "2026-05-15",
-      "team1": "lsg",
-      "team2": "csk",
-      "venue": "Lucknow"
-    },
     {
       "id": "m60",
       "date": "2026-05-16",
