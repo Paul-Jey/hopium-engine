@@ -1,12 +1,11 @@
 /**
  * IPL 2026 Data Updater
  * 
- * Scrapes current IPL standings and remaining fixtures.
+ * Fetches current IPL standings from CricAPI.
  * Run with: node scripts/update-data.js
  * 
- * For automated daily updates, set up a cron job or Windows Task Scheduler:
- *   - Windows: schtasks /create /tn "IPL Data Update" /tr "node C:\path\to\scripts\update-data.js" /sc daily /st 06:30
- *   - Linux/Mac: 0 1 * * * cd /path/to/project && node scripts/update-data.js
+ * Scheduled via GitHub Actions at 12:00 AM IST (18:30 UTC) daily.
+ * Uses 1 API call per run to conserve the 100/day limit.
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'fs';
@@ -16,7 +15,26 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, '..', 'public', 'data', 'ipl2026.json');
 
-// Team metadata (never changes)
+const API_KEY = 'ccb921ce-bd11-4749-aeb5-c1690182b6b3';
+const SERIES_ID = '87c62aac-bc3c-4738-ab93-19da0690488f'; // Indian Premier League 2026
+
+// ---- Team ID mapping ----
+// Maps API shortnames/teamnames to our internal IDs.
+// This is the ONLY place team identity is resolved — no fuzzy matching.
+const SHORTNAME_TO_ID = {
+  'CSK':  'csk',
+  'DC':   'dc',
+  'GT':   'gt',
+  'KKR':  'kkr',
+  'LSG':  'lsg',
+  'MI':   'mi',
+  'PBKS': 'pbks',
+  'RR':   'rr',
+  'RCBW': 'rcb',   // CricAPI uses RCBW for Royal Challengers Bengaluru
+  'RCB':  'rcb',
+  'SRH':  'srh',
+};
+
 const TEAMS_META = {
   pbks: { name: 'Punjab Kings', shortName: 'PBKS' },
   rcb:  { name: 'Royal Challengers Bengaluru', shortName: 'RCB' },
@@ -30,131 +48,96 @@ const TEAMS_META = {
   lsg:  { name: 'Lucknow Super Giants', shortName: 'LSG' },
 };
 
-async function fetchPointsTable(existingData) {
-  const apiKey = 'ccb921ce-bd11-4749-aeb5-c1690182b6b3';
-  const seriesId = '87c62aac-bc3c-4738-ab93-19da0690488f'; // Indian Premier League 2026
-
+// ---- Fetch & Parse ----
+async function fetchPointsTable() {
   try {
-    console.log('Fetching Standings from CricAPI...');
-    const standingsRes = await fetch(`https://api.cricapi.com/v1/series_points?id=${seriesId}&apikey=${apiKey}`);
-    if (!standingsRes.ok) throw new Error(`Failed to fetch standings: ${standingsRes.status}`);
-    
-    const standingsData = await standingsRes.json();
-    
-    if (standingsData.status !== 'success') {
-      throw new Error(`CricAPI returned failure: ${standingsData.reason || 'Unknown error'}`);
+    console.log('Fetching standings from CricAPI...');
+    const res = await fetch(`https://api.cricapi.com/v1/series_points?id=${SERIES_ID}&apikey=${API_KEY}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const json = await res.json();
+    if (json.status !== 'success') {
+      throw new Error(`CricAPI error: ${json.reason || 'Unknown'}`);
     }
 
-    return parseCricApiStandings(standingsData.data, existingData);
+    console.log(`API hit count: ${json.info?.hitsToday || '?'}/${json.info?.hitsLimit || '?'} today`);
+    return parseCricApiStandings(json.data);
 
   } catch (e) {
-    console.error('Error fetching data from CricAPI:', e);
+    console.error('Error fetching data from CricAPI:', e.message);
     return null;
   }
 }
 
-function parseCricApiStandings(dataList, existingData) {
-  try {
-    return dataList.map(ts => {
-      const teamName = ts.teamname || '';
-      let teamId = findTeamId(teamName);
-      
-      // Fallback: the API might use 'RCBW' for RCB, so handle that edge case
-      if (ts.shortname === 'RCBW' || teamName.includes('Bengaluru')) teamId = 'rcb';
-      
-      // Extract the existing NRR since CricAPI doesn't provide it
-      const existingTeamInfo = existingData.teams ? existingData.teams.find(t => t.id === teamId) : {};
-      const nrr = existingTeamInfo ? (existingTeamInfo.nrr || 0) : 0;
-      
-      const played = parseInt(ts.matches || 0);
-      const won = parseInt(ts.wins || 0);
-      const lost = parseInt(ts.loss || 0);
-      const nr = parseInt(ts.nr || 0);
-      const ties = parseInt(ts.ties || 0);
-      
-      // Calculate points manually (2 per win, 1 per tie/nr)
-      const points = (won * 2) + (ties * 1) + (nr * 1);
-      
-      return {
-        id: teamId,
-        name: TEAMS_META[teamId]?.name || teamName,
-        shortName: TEAMS_META[teamId]?.shortName || ts.shortname || '',
-        played: played,
-        won: won,
-        lost: lost,
-        noResult: nr + ties, // Combine ties and NR for simplicity
-        points: points,
-        nrr: nrr,
-      };
-    }).filter(t => t.id); // Filter out unmapped teams
-  } catch (e) {
-    console.error('Failed to parse CricAPI data:', e);
-    return null;
-  }
+function parseCricApiStandings(dataList) {
+  const seen = new Set(); // Guard against duplicates
+
+  return dataList.map(ts => {
+    // Resolve team ID using the explicit shortname map
+    const teamId = SHORTNAME_TO_ID[ts.shortname] || null;
+    
+    if (!teamId) {
+      console.warn(`Unknown team shortname: "${ts.shortname}" (${ts.teamname}) — skipping`);
+      return null;
+    }
+
+    // Skip if we've already seen this team (prevents duplicates)
+    if (seen.has(teamId)) {
+      console.warn(`Duplicate team entry for ${teamId} — skipping`);
+      return null;
+    }
+    seen.add(teamId);
+
+    const played = parseInt(ts.matches || 0);
+    const won = parseInt(ts.wins || 0);
+    const lost = parseInt(ts.loss || 0);
+    const nr = parseInt(ts.nr || 0);
+    const ties = parseInt(ts.ties || 0);
+    const points = (won * 2) + nr + ties;
+
+    return {
+      id: teamId,
+      name: TEAMS_META[teamId]?.name || ts.teamname,
+      shortName: TEAMS_META[teamId]?.shortName || ts.shortname,
+      played,
+      won,
+      lost,
+      noResult: nr + ties,
+      points,
+    };
+  }).filter(Boolean); // Remove nulls
 }
 
-function findTeamId(name) {
-  const lower = name.toLowerCase();
-  for (const [id, meta] of Object.entries(TEAMS_META)) {
-    if (lower.includes(meta.name.toLowerCase().split(' ')[0])) return id;
-    if (lower.includes(meta.shortName.toLowerCase())) return id;
-  }
-  return '';
-}
-
+// ---- Main ----
 async function update() {
   console.log(`[${new Date().toISOString()}] Updating IPL data...`);
 
-  // Load existing data first so we can preserve NRR
+  // Load existing data to preserve remaining matches
   let existingData = {};
   if (existsSync(DATA_PATH)) {
     existingData = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
   }
 
-  // Try to fetch live data
-  const liveStandings = await fetchPointsTable(existingData);
+  const liveStandings = await fetchPointsTable();
 
-  if (liveStandings && liveStandings.length === 10) {
-    // Also fetch match list to see which matches ended
-    let endedMatchIds = [];
-    try {
-      const apiKey = 'ccb921ce-bd11-4749-aeb5-c1690182b6b3';
-      const seriesId = '87c62aac-bc3c-4738-ab93-19da0690488f';
-      const infoRes = await fetch(`https://api.cricapi.com/v1/series_info?id=${seriesId}&apikey=${apiKey}`);
-      if (infoRes.ok) {
-        const infoData = await infoRes.json();
-        if (infoData && infoData.data && infoData.data.matchList) {
-          endedMatchIds = infoData.data.matchList
-            .filter(m => m.matchEnded === true)
-            .map(m => m.id);
-        }
-      }
-    } catch (e) {
-      console.error('Failed to fetch match list for fixture filtering:', e);
-    }
-
-    // Filter out matches that have ended or where the date has passed
-    // We use Asia/Kolkata timezone because the tournament and the cron job follow IST
-    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
-    const remainingMatches = (existingData.remainingMatches || []).filter(m => {
-      // If we have the match ID, check if it's in the ended list
-      const hasEnded = endedMatchIds.includes(m.id);
-      return !hasEnded && m.date >= today;
-    });
-
-    const newData = {
-      lastUpdated: new Date().toISOString(),
-      season: 'IPL 2026',
-      teams: liveStandings,
-      remainingMatches: remainingMatches,
-    };
-
-    writeFileSync(DATA_PATH, JSON.stringify(newData, null, 2));
-    console.log(`✅ Data updated successfully. ${liveStandings.length} teams, ${remainingMatches.length} remaining matches.`);
-  } else {
-    console.log('⚠️  Could not fetch live data. Keeping existing data file unchanged.');
-    console.log('   To update manually, edit public/data/ipl2026.json directly.');
+  if (!liveStandings || liveStandings.length !== 10) {
+    console.log(`⚠️  Expected 10 teams, got ${liveStandings?.length || 0}. Keeping existing data.`);
+    return;
   }
+
+  // Filter out completed matches by date (IST timezone)
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+  const remainingMatches = (existingData.remainingMatches || []).filter(m => m.date >= today);
+
+  const newData = {
+    lastUpdated: new Date().toISOString(),
+    season: 'IPL 2026',
+    teams: liveStandings,
+    remainingMatches,
+  };
+
+  writeFileSync(DATA_PATH, JSON.stringify(newData, null, 2));
+  console.log(`✅ Updated: ${liveStandings.length} teams, ${remainingMatches.length} remaining matches.`);
 }
 
 update();

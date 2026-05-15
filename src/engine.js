@@ -39,10 +39,10 @@ export function calculateStandings(teams, remainingMatches, simulatedResults) {
     }
   }
 
-  // Sort: points desc, then NRR desc
+  // Sort: points desc, then wins desc (NRR not available from API)
   standings.sort((a, b) => {
     if (b.simPoints !== a.simPoints) return b.simPoints - a.simPoints;
-    return b.nrr - a.nrr;
+    return (b.won + b.simWon) - (a.won + a.simWon);
   });
 
   return standings;

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-14T20:14:05.851Z",
+  "lastUpdated": "2026-05-15T13:51:44.883Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -10,8 +10,7 @@
       "won": 6,
       "lost": 5,
       "noResult": 0,
-      "points": 12,
-      "nrr": 0.185
+      "points": 12
     },
     {
       "id": "dc",
@@ -21,8 +20,7 @@
       "won": 5,
       "lost": 7,
       "noResult": 0,
-      "points": 10,
-      "nrr": -1.154
+      "points": 10
     },
     {
       "id": "gt",
@@ -32,8 +30,7 @@
       "won": 8,
       "lost": 4,
       "noResult": 0,
-      "points": 16,
-      "nrr": 0.228
+      "points": 16
     },
     {
       "id": "kkr",
@@ -43,8 +40,7 @@
       "won": 3,
       "lost": 6,
       "noResult": 2,
-      "points": 8,
-      "nrr": -0.169
+      "points": 8
     },
     {
       "id": "lsg",
@@ -54,8 +50,7 @@
       "won": 2,
       "lost": 8,
       "noResult": 1,
-      "points": 5,
-      "nrr": -0.907
+      "points": 5
     },
     {
       "id": "mi",
@@ -65,8 +60,7 @@
       "won": 4,
       "lost": 8,
       "noResult": 0,
-      "points": 8,
-      "nrr": -0.585
+      "points": 8
     },
     {
       "id": "pbks",
@@ -76,19 +70,17 @@
       "won": 6,
       "lost": 5,
       "noResult": 1,
-      "points": 13,
-      "nrr": 0.571
+      "points": 13
     },
     {
-      "id": "rcb",
-      "name": "Royal Challengers Bengaluru",
-      "shortName": "RCB",
+      "id": "rr",
+      "name": "Rajasthan Royals",
+      "shortName": "RR",
       "played": 11,
       "won": 6,
       "lost": 5,
       "noResult": 0,
-      "points": 12,
-      "nrr": 1.103
+      "points": 12
     },
     {
       "id": "rcb",
@@ -98,8 +90,7 @@
       "won": 8,
       "lost": 4,
       "noResult": 0,
-      "points": 16,
-      "nrr": 1.103
+      "points": 16
     },
     {
       "id": "srh",
@@ -109,8 +100,7 @@
       "won": 7,
       "lost": 5,
       "noResult": 0,
-      "points": 14,
-      "nrr": 0.737
+      "points": 14
     }
   ],
   "remainingMatches": [
