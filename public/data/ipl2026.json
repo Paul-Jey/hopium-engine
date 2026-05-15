@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-15T13:51:44.883Z",
+  "lastUpdated": "2026-05-15T14:14:23.389Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -10,7 +10,8 @@
       "won": 6,
       "lost": 5,
       "noResult": 0,
-      "points": 12
+      "points": 12,
+      "nrr": 0.184
     },
     {
       "id": "dc",
@@ -20,7 +21,8 @@
       "won": 5,
       "lost": 7,
       "noResult": 0,
-      "points": 10
+      "points": 10,
+      "nrr": -0.815
     },
     {
       "id": "gt",
@@ -30,7 +32,8 @@
       "won": 8,
       "lost": 4,
       "noResult": 0,
-      "points": 16
+      "points": 16,
+      "nrr": 0.401
     },
     {
       "id": "kkr",
@@ -40,7 +43,8 @@
       "won": 3,
       "lost": 6,
       "noResult": 2,
-      "points": 8
+      "points": 8,
+      "nrr": -0.046
     },
     {
       "id": "lsg",
@@ -50,7 +54,8 @@
       "won": 2,
       "lost": 8,
       "noResult": 1,
-      "points": 5
+      "points": 5,
+      "nrr": -0.798
     },
     {
       "id": "mi",
@@ -60,7 +65,8 @@
       "won": 4,
       "lost": 8,
       "noResult": 0,
-      "points": 8
+      "points": 8,
+      "nrr": -0.534
     },
     {
       "id": "pbks",
@@ -70,7 +76,8 @@
       "won": 6,
       "lost": 5,
       "noResult": 1,
-      "points": 13
+      "points": 13,
+      "nrr": 0.32
     },
     {
       "id": "rr",
@@ -80,7 +87,8 @@
       "won": 6,
       "lost": 5,
       "noResult": 0,
-      "points": 12
+      "points": 12,
+      "nrr": 0.18
     },
     {
       "id": "rcb",
@@ -90,7 +98,8 @@
       "won": 8,
       "lost": 4,
       "noResult": 0,
-      "points": 16
+      "points": 16,
+      "nrr": 0.947
     },
     {
       "id": "srh",
@@ -100,7 +109,8 @@
       "won": 7,
       "lost": 5,
       "noResult": 0,
-      "points": 14
+      "points": 14,
+      "nrr": 0.309
     }
   ],
   "remainingMatches": [

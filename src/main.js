@@ -99,6 +99,7 @@ function renderApp() {
                 <th>W</th>
                 <th>L</th>
                 <th>Pts</th>
+                <th>NRR</th>
               </tr>
             </thead>
             <tbody id="points-table-body"></tbody>
@@ -227,6 +228,9 @@ function renderPointsTable() {
 
     const isQualLine = rank === 4;
 
+    const nrrClass = team.nrr >= 0 ? 'nrr-positive' : 'nrr-negative';
+    const nrrStr = team.nrr >= 0 ? `+${team.nrr.toFixed(3)}` : team.nrr.toFixed(3);
+
     return `
       <tr class="${rowClass} ${isQualLine ? 'points-table__qual-line' : ''}" data-team="${team.id}">
         <td class="points-table__rank">${rank}</td>
@@ -240,6 +244,7 @@ function renderPointsTable() {
         <td>${record.won}</td>
         <td>${record.lost}</td>
         <td class="points-table__pts">${team.simPoints}</td>
+        <td class="points-table__nrr ${nrrClass}">${nrrStr}</td>
       </tr>
     `;
   }).join('');
