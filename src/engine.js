@@ -52,7 +52,16 @@ export function getQualificationStatus(teamId, standings) {
   const idx = standings.findIndex(t => t.id === teamId);
   if (idx < 0) return 'UNKNOWN';
   if (idx < 4) return 'QUALIFIED';
-  if (idx === 4) return 'ON_THE_EDGE';
+  
+  // Rank 5 is only "On the Edge" if they have the same points as Rank 4
+  if (idx === 4) {
+    const team4 = standings[3];
+    const team5 = standings[4];
+    if (team4 && team5 && team4.simPoints === team5.simPoints) {
+      return 'ON_THE_EDGE';
+    }
+  }
+  
   return 'ELIMINATED';
 }
 
@@ -63,13 +72,17 @@ export function getStatusMessage(teamId, standings) {
   const rank = idx + 1;
 
   const status = getQualificationStatus(teamId, standings);
+  const team4 = standings[3];
+  const team5 = standings[4];
 
   if (status === 'QUALIFIED') {
-    return `${team.shortName} qualify — ranked #${rank} with ${team.simPoints} pts`;
+    const isPointsTieWith5 = team5 && team.simPoints === team5.simPoints && rank === 4;
+    const msg = isPointsTieWith5 ? ` (tied on points, ahead on NRR)` : ``;
+    return `${team.shortName} qualify — ranked #${rank} with ${team.simPoints} pts${msg}`;
   } else if (status === 'ON_THE_EDGE') {
-    return `${team.shortName} on the bubble — ranked #${rank}, could swap on NRR`;
+    return `${team.shortName} on the bubble — ranked #${rank} (tied on points, behind on NRR)`;
   } else {
-    return `${team.shortName} don't qualify — ranked #${rank} with ${team.simPoints} pts`;
+    return `${team.shortName} eliminated — ranked #${rank} with ${team.simPoints} pts`;
   }
 }
 

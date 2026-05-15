@@ -219,7 +219,7 @@ function renderPointsTable() {
     const record = getSimulatedRecord(team);
     const isSelected = team.id === state.selectedTeam;
     const isQualified = rank <= 4;
-    const isEdge = rank === 5;
+    const isEdge = rank === 5 && state.standings[3] && state.standings[3].simPoints === team.simPoints;
 
     let rowClass = '';
     if (isQualified) rowClass += ' points-table__row--qualified';
