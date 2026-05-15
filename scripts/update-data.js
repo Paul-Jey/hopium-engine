@@ -153,17 +153,29 @@ async function updateNRR(nrrCache) {
         continue;
       }
 
+      // Parse overs properly (e.g. 19.4 -> 19 + 4/6)
+      function parseOvers(o, w) {
+        if (w === 10) return 20;
+        const parts = o.toString().split('.');
+        const overs = parseInt(parts[0]);
+        const balls = parseInt(parts[1] || '0');
+        return overs + (balls / 6);
+      }
+
+      const o1 = parseOvers(scores[0].o, scores[0].w);
+      const o2 = parseOvers(scores[1].o, scores[1].w);
+
       // Accumulate NRR data
       nrrCache.teamNrrData[team1Id].runsScored += scores[0].r;
-      nrrCache.teamNrrData[team1Id].oversFaced += scores[0].o;
+      nrrCache.teamNrrData[team1Id].oversFaced += o1;
       nrrCache.teamNrrData[team1Id].runsConceded += scores[1].r;
-      nrrCache.teamNrrData[team1Id].oversBowled += scores[1].o;
+      nrrCache.teamNrrData[team1Id].oversBowled += o2;
       nrrCache.teamNrrData[team1Id].matchesProcessed++;
 
       nrrCache.teamNrrData[team2Id].runsScored += scores[1].r;
-      nrrCache.teamNrrData[team2Id].oversFaced += scores[1].o;
+      nrrCache.teamNrrData[team2Id].oversFaced += o2;
       nrrCache.teamNrrData[team2Id].runsConceded += scores[0].r;
-      nrrCache.teamNrrData[team2Id].oversBowled += scores[0].o;
+      nrrCache.teamNrrData[team2Id].oversBowled += o1;
       nrrCache.teamNrrData[team2Id].matchesProcessed++;
 
       nrrCache.processedMatchIds.push(match.id);
@@ -234,15 +246,15 @@ async function update() {
     const newData = {
       lastUpdated: new Date().toISOString(),
       season: 'IPL 2026',
-      teams: liveStandings,
+      teams: existingData.teams, // KEEP existing correct teams for now
       remainingMatches,
     };
     writeFileSync(DATA_PATH, JSON.stringify(newData, null, 2));
 
     // 6. Save NRR cache
-    writeFileSync(NRR_CACHE_PATH, JSON.stringify(nrrCache, null, 2));
+    // writeFileSync(NRR_CACHE_PATH, JSON.stringify(nrrCache, null, 2));
 
-    console.log(`\n✅ Updated: ${liveStandings.length} teams, ${remainingMatches.length} remaining matches.`);
+    console.log(`\n✅ Updated: remaining matches only. Teams data is locked manually due to CricAPI inaccuracies.`);
     console.log('NRR values:');
     for (const t of liveStandings) {
       console.log(`  ${t.shortName.padEnd(5)} ${t.nrr >= 0 ? '+' : ''}${t.nrr.toFixed(3)}`);

@@ -124,18 +124,28 @@ async function bootstrap() {
         continue;
       }
 
-      // Team 1 scored scores[0].r in scores[0].o overs
-      // Team 1 conceded scores[1].r in scores[1].o overs
+      // Parse overs properly (e.g. 19.4 -> 19 + 4/6)
+      function parseOvers(o, w) {
+        if (w === 10) return 20; // If all out, deemed to have faced full quota (assuming 20)
+        const parts = o.toString().split('.');
+        const overs = parseInt(parts[0]);
+        const balls = parseInt(parts[1] || '0');
+        return overs + (balls / 6);
+      }
+
+      const o1 = parseOvers(scores[0].o, scores[0].w);
+      const o2 = parseOvers(scores[1].o, scores[1].w);
+
       nrrData[team1Id].runsScored += scores[0].r;
-      nrrData[team1Id].oversFaced += scores[0].o;
+      nrrData[team1Id].oversFaced += o1;
       nrrData[team1Id].runsConceded += scores[1].r;
-      nrrData[team1Id].oversBowled += scores[1].o;
+      nrrData[team1Id].oversBowled += o2;
       nrrData[team1Id].matchesProcessed++;
 
       nrrData[team2Id].runsScored += scores[1].r;
-      nrrData[team2Id].oversFaced += scores[1].o;
+      nrrData[team2Id].oversFaced += o2;
       nrrData[team2Id].runsConceded += scores[0].r;
-      nrrData[team2Id].oversBowled += scores[0].o;
+      nrrData[team2Id].oversBowled += o1;
       nrrData[team2Id].matchesProcessed++;
 
       processedMatchIds.push(match.id);
