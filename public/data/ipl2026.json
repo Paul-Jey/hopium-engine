@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-15T20:01:10.663Z",
+  "lastUpdated": "2026-05-16T19:39:19.127Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -114,13 +114,6 @@
     }
   ],
   "remainingMatches": [
-    {
-      "id": "m60",
-      "date": "2026-05-16",
-      "team1": "kkr",
-      "team2": "gt",
-      "venue": "Kolkata"
-    },
     {
       "id": "m61",
       "date": "2026-05-17",
