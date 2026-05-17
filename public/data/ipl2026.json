@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-16T19:39:19.127Z",
+  "lastUpdated": "2026-05-17T12:50:00.000Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -17,12 +17,12 @@
       "id": "gt",
       "name": "Gujarat Titans",
       "shortName": "GT",
-      "played": 12,
+      "played": 13,
       "won": 8,
-      "lost": 4,
+      "lost": 5,
       "noResult": 0,
       "points": 16,
-      "nrr": 0.551
+      "nrr": 0.400
     },
     {
       "id": "srh",
@@ -47,17 +47,6 @@
       "nrr": 0.355
     },
     {
-      "id": "csk",
-      "name": "Chennai Super Kings",
-      "shortName": "CSK",
-      "played": 11,
-      "won": 6,
-      "lost": 5,
-      "noResult": 0,
-      "points": 12,
-      "nrr": 0.185
-    },
-    {
       "id": "rr",
       "name": "Rajasthan Royals",
       "shortName": "RR",
@@ -69,6 +58,28 @@
       "nrr": 0.082
     },
     {
+      "id": "csk",
+      "name": "Chennai Super Kings",
+      "shortName": "CSK",
+      "played": 12,
+      "won": 6,
+      "lost": 6,
+      "noResult": 0,
+      "points": 12,
+      "nrr": 0.027
+    },
+    {
+      "id": "kkr",
+      "name": "Kolkata Knight Riders",
+      "shortName": "KKR",
+      "played": 12,
+      "won": 5,
+      "lost": 6,
+      "noResult": 1,
+      "points": 11,
+      "nrr": -0.038
+    },
+    {
       "id": "dc",
       "name": "Delhi Capitals",
       "shortName": "DC",
@@ -78,17 +89,6 @@
       "noResult": 0,
       "points": 10,
       "nrr": -0.993
-    },
-    {
-      "id": "kkr",
-      "name": "Kolkata Knight Riders",
-      "shortName": "KKR",
-      "played": 11,
-      "won": 4,
-      "lost": 6,
-      "noResult": 1,
-      "points": 9,
-      "nrr": -0.198
     },
     {
       "id": "mi",
@@ -105,12 +105,12 @@
       "id": "lsg",
       "name": "Lucknow Super Giants",
       "shortName": "LSG",
-      "played": 11,
-      "won": 3,
+      "played": 12,
+      "won": 4,
       "lost": 8,
       "noResult": 0,
-      "points": 6,
-      "nrr": -0.907
+      "points": 8,
+      "nrr": -0.701
     }
   ],
   "remainingMatches": [
