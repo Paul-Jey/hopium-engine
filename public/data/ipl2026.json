@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-20T07:15:00.000Z",
+  "lastUpdated": "2026-05-20T20:34:17.944Z",
   "season": "IPL 2026",
   "teams": [
     {
@@ -22,7 +22,7 @@
       "lost": 5,
       "noResult": 0,
       "points": 16,
-      "nrr": 0.400
+      "nrr": 0.4
     },
     {
       "id": "srh",
@@ -33,7 +33,7 @@
       "lost": 5,
       "noResult": 0,
       "points": 16,
-      "nrr": 0.350
+      "nrr": 0.35
     },
     {
       "id": "rr",
@@ -58,6 +58,17 @@
       "nrr": 0.227
     },
     {
+      "id": "kkr",
+      "name": "Kolkata Knight Riders",
+      "shortName": "KKR",
+      "played": 13,
+      "won": 6,
+      "lost": 6,
+      "noResult": 1,
+      "points": 13,
+      "nrr": 0.005
+    },
+    {
       "id": "csk",
       "name": "Chennai Super Kings",
       "shortName": "CSK",
@@ -80,26 +91,15 @@
       "nrr": -0.871
     },
     {
-      "id": "kkr",
-      "name": "Kolkata Knight Riders",
-      "shortName": "KKR",
-      "played": 12,
-      "won": 5,
-      "lost": 6,
-      "noResult": 1,
-      "points": 11,
-      "nrr": -0.038
-    },
-    {
       "id": "mi",
       "name": "Mumbai Indians",
       "shortName": "MI",
-      "played": 12,
+      "played": 13,
       "won": 4,
-      "lost": 8,
+      "lost": 9,
       "noResult": 0,
       "points": 8,
-      "nrr": -0.504
+      "nrr": -0.507
     },
     {
       "id": "lsg",
@@ -114,13 +114,6 @@
     }
   ],
   "remainingMatches": [
-    {
-      "id": "m65",
-      "date": "2026-05-20",
-      "team1": "kkr",
-      "team2": "mi",
-      "venue": "Kolkata"
-    },
     {
       "id": "m66",
       "date": "2026-05-21",
