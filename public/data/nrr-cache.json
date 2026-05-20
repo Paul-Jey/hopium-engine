@@ -20,12 +20,15 @@
     "ed074a44-a661-4727-83a7-4a33c2a05165",
     "6666db12-b9cc-49f0-b3af-5628fc8c53fa",
     "8b691738-66b3-4774-a7fd-5a2113a54ca5",
+    "8416c2a9-4a74-4ac2-a6ae-5ad2538cbc56",
     "962d1940-4fea-4e71-97ca-5fc2c008169f",
     "3ec1f721-7f79-49e3-bbc1-69e88b9cf4a3",
     "55e260bc-4aa7-44de-92e7-6bbd1edbb711",
     "6aced947-319c-4e4a-9214-6f94f14c043e",
     "8fbd3678-6299-4e67-8c28-74d4952b6ae7",
     "166633a2-cecb-4cf3-a984-78dc898b5345",
+    "3b225f44-ddf2-41d4-8079-7a3f81876e35",
+    "990e89ea-3f6a-4196-ac73-7ad1a5f8c451",
     "90d5c075-3c9a-40b7-ab45-80a36a3a2351",
     "3d5968a6-4851-410c-b66a-811b92406933",
     "50520170-15b4-49e3-8180-835202e8f623",
@@ -59,15 +62,16 @@
     "3dd82a3e-52e3-409b-bb9c-ef458942a7a2",
     "ee5ab0d9-acd2-42bf-b5bc-f4d287e0f434",
     "1412721c-3b2b-4703-89c7-f86f5ea81048",
-    "690985d0-c890-434a-bece-fb02d59b09d2"
+    "690985d0-c890-434a-bece-fb02d59b09d2",
+    "288e3406-3692-400a-bc22-fb8cfa0db2ca"
   ],
   "teamNrrData": {
     "rcb": {
-      "runsScored": 1920,
-      "oversFaced": 240,
-      "runsConceded": 1667.28,
-      "oversBowled": 240,
-      "matchesProcessed": 12
+      "runsScored": 2080,
+      "oversFaced": 260,
+      "runsConceded": 1803.1,
+      "oversBowled": 260,
+      "matchesProcessed": 13
     },
     "gt": {
       "runsScored": 2080,
@@ -77,44 +81,44 @@
       "matchesProcessed": 13
     },
     "srh": {
-      "runsScored": 1920,
-      "oversFaced": 240,
-      "runsConceded": 1840.56,
-      "oversBowled": 240,
-      "matchesProcessed": 12
-    },
-    "pbks": {
-      "runsScored": 1920,
-      "oversFaced": 240,
-      "runsConceded": 1834.8,
-      "oversBowled": 240,
-      "matchesProcessed": 12
+      "runsScored": 2080,
+      "oversFaced": 260,
+      "runsConceded": 1989,
+      "oversBowled": 260,
+      "matchesProcessed": 13
     },
     "rr": {
-      "runsScored": 1760,
-      "oversFaced": 220,
-      "runsConceded": 1741.96,
-      "oversBowled": 220,
-      "matchesProcessed": 11
+      "runsScored": 2080,
+      "oversFaced": 260,
+      "runsConceded": 2058.42,
+      "oversBowled": 260,
+      "matchesProcessed": 13
+    },
+    "pbks": {
+      "runsScored": 2080,
+      "oversFaced": 260,
+      "runsConceded": 2020.98,
+      "oversBowled": 260,
+      "matchesProcessed": 13
     },
     "csk": {
-      "runsScored": 1920,
-      "oversFaced": 240,
-      "runsConceded": 1913.52,
-      "oversBowled": 240,
-      "matchesProcessed": 12
+      "runsScored": 2080,
+      "oversFaced": 260,
+      "runsConceded": 2084.16,
+      "oversBowled": 260,
+      "matchesProcessed": 13
+    },
+    "dc": {
+      "runsScored": 2080,
+      "oversFaced": 260,
+      "runsConceded": 2306.46,
+      "oversBowled": 260,
+      "matchesProcessed": 13
     },
     "kkr": {
       "runsScored": 1920,
       "oversFaced": 240,
       "runsConceded": 1929.12,
-      "oversBowled": 240,
-      "matchesProcessed": 12
-    },
-    "dc": {
-      "runsScored": 1920,
-      "oversFaced": 240,
-      "runsConceded": 2158.32,
       "oversBowled": 240,
       "matchesProcessed": 12
     },
@@ -126,24 +130,24 @@
       "matchesProcessed": 12
     },
     "lsg": {
-      "runsScored": 1920,
-      "oversFaced": 240,
-      "runsConceded": 2088.24,
-      "oversBowled": 240,
-      "matchesProcessed": 12
+      "runsScored": 2080,
+      "oversFaced": 260,
+      "runsConceded": 2262.52,
+      "oversBowled": 260,
+      "matchesProcessed": 13
     }
   },
   "nrr": {
-    "rcb": 1.053,
+    "rcb": 1.065,
     "gt": 0.4,
-    "srh": 0.331,
-    "pbks": 0.355,
-    "rr": 0.082,
-    "csk": 0.027,
+    "srh": 0.35,
+    "rr": 0.083,
+    "pbks": 0.227,
+    "csk": -0.016,
+    "dc": -0.871,
     "kkr": -0.038,
-    "dc": -0.993,
     "mi": -0.504,
-    "lsg": -0.701
+    "lsg": -0.702
   },
-  "lastUpdated": "2026-05-17T07:25:11.838Z"
+  "lastUpdated": "2026-05-20T07:28:09.388Z"
 }

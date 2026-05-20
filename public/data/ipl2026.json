@@ -1,17 +1,17 @@
 {
-  "lastUpdated": "2026-05-17T12:50:00.000Z",
+  "lastUpdated": "2026-05-20T07:15:00.000Z",
   "season": "IPL 2026",
   "teams": [
     {
       "id": "rcb",
       "name": "Royal Challengers Bengaluru",
       "shortName": "RCB",
-      "played": 12,
-      "won": 8,
+      "played": 13,
+      "won": 9,
       "lost": 4,
       "noResult": 0,
-      "points": 16,
-      "nrr": 1.053
+      "points": 18,
+      "nrr": 1.065
     },
     {
       "id": "gt",
@@ -28,45 +28,56 @@
       "id": "srh",
       "name": "Sunrisers Hyderabad",
       "shortName": "SRH",
-      "played": 12,
-      "won": 7,
+      "played": 13,
+      "won": 8,
       "lost": 5,
       "noResult": 0,
-      "points": 14,
-      "nrr": 0.331
-    },
-    {
-      "id": "pbks",
-      "name": "Punjab Kings",
-      "shortName": "PBKS",
-      "played": 12,
-      "won": 6,
-      "lost": 5,
-      "noResult": 1,
-      "points": 13,
-      "nrr": 0.355
+      "points": 16,
+      "nrr": 0.350
     },
     {
       "id": "rr",
       "name": "Rajasthan Royals",
       "shortName": "RR",
-      "played": 11,
-      "won": 6,
-      "lost": 5,
+      "played": 13,
+      "won": 7,
+      "lost": 6,
       "noResult": 0,
-      "points": 12,
-      "nrr": 0.082
+      "points": 14,
+      "nrr": 0.083
+    },
+    {
+      "id": "pbks",
+      "name": "Punjab Kings",
+      "shortName": "PBKS",
+      "played": 13,
+      "won": 6,
+      "lost": 6,
+      "noResult": 1,
+      "points": 13,
+      "nrr": 0.227
     },
     {
       "id": "csk",
       "name": "Chennai Super Kings",
       "shortName": "CSK",
-      "played": 12,
+      "played": 13,
       "won": 6,
-      "lost": 6,
+      "lost": 7,
       "noResult": 0,
       "points": 12,
-      "nrr": 0.027
+      "nrr": -0.016
+    },
+    {
+      "id": "dc",
+      "name": "Delhi Capitals",
+      "shortName": "DC",
+      "played": 13,
+      "won": 6,
+      "lost": 7,
+      "noResult": 0,
+      "points": 12,
+      "nrr": -0.871
     },
     {
       "id": "kkr",
@@ -78,17 +89,6 @@
       "noResult": 1,
       "points": 11,
       "nrr": -0.038
-    },
-    {
-      "id": "dc",
-      "name": "Delhi Capitals",
-      "shortName": "DC",
-      "played": 12,
-      "won": 5,
-      "lost": 7,
-      "noResult": 0,
-      "points": 10,
-      "nrr": -0.993
     },
     {
       "id": "mi",
@@ -105,43 +105,15 @@
       "id": "lsg",
       "name": "Lucknow Super Giants",
       "shortName": "LSG",
-      "played": 12,
+      "played": 13,
       "won": 4,
-      "lost": 8,
+      "lost": 9,
       "noResult": 0,
       "points": 8,
-      "nrr": -0.701
+      "nrr": -0.702
     }
   ],
   "remainingMatches": [
-    {
-      "id": "m61",
-      "date": "2026-05-17",
-      "team1": "pbks",
-      "team2": "rcb",
-      "venue": "Dharamshala"
-    },
-    {
-      "id": "m62",
-      "date": "2026-05-17",
-      "team1": "dc",
-      "team2": "rr",
-      "venue": "Delhi"
-    },
-    {
-      "id": "m63",
-      "date": "2026-05-18",
-      "team1": "csk",
-      "team2": "srh",
-      "venue": "Chennai"
-    },
-    {
-      "id": "m64",
-      "date": "2026-05-19",
-      "team1": "rr",
-      "team2": "lsg",
-      "venue": "Jaipur"
-    },
     {
       "id": "m65",
       "date": "2026-05-20",
