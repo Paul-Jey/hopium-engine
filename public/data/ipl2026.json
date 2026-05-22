@@ -1,49 +1,49 @@
 {
-  "lastUpdated": "2026-05-21T20:19:29.553Z",
+  "lastUpdated": "2026-05-22T20:19:42.278Z",
   "season": "IPL 2026",
   "teams": [
-    {
-      "id": "rcb",
-      "name": "Royal Challengers Bengaluru",
-      "shortName": "RCB",
-      "played": 13,
-      "won": 9,
-      "lost": 4,
-      "noResult": 0,
-      "points": 18,
-      "nrr": 1.065
-    },
     {
       "id": "gt",
       "name": "Gujarat Titans",
       "shortName": "GT",
+      "played": 15,
+      "won": 10,
+      "lost": 5,
+      "noResult": 0,
+      "points": 20,
+      "nrr": 0.689
+    },
+    {
+      "id": "rcb",
+      "name": "Royal Challengers Bengaluru",
+      "shortName": "RCB",
       "played": 14,
       "won": 9,
       "lost": 5,
       "noResult": 0,
       "points": 18,
-      "nrr": 0.689
+      "nrr": 0.792
     },
     {
       "id": "srh",
       "name": "Sunrisers Hyderabad",
       "shortName": "SRH",
-      "played": 13,
-      "won": 8,
+      "played": 14,
+      "won": 9,
       "lost": 5,
       "noResult": 0,
-      "points": 16,
-      "nrr": 0.35
+      "points": 18,
+      "nrr": 0.521
     },
     {
       "id": "kkr",
       "name": "Kolkata Knight Riders",
       "shortName": "KKR",
-      "played": 14,
-      "won": 7,
+      "played": 15,
+      "won": 8,
       "lost": 6,
       "noResult": 1,
-      "points": 15,
+      "points": 17,
       "nrr": 0.005
     },
     {
@@ -72,9 +72,9 @@
       "id": "csk",
       "name": "Chennai Super Kings",
       "shortName": "CSK",
-      "played": 14,
+      "played": 15,
       "won": 6,
-      "lost": 8,
+      "lost": 9,
       "noResult": 0,
       "points": 12,
       "nrr": -0.333
@@ -94,9 +94,9 @@
       "id": "mi",
       "name": "Mumbai Indians",
       "shortName": "MI",
-      "played": 14,
+      "played": 15,
       "won": 4,
-      "lost": 10,
+      "lost": 11,
       "noResult": 0,
       "points": 8,
       "nrr": -0.507
@@ -114,13 +114,6 @@
     }
   ],
   "remainingMatches": [
-    {
-      "id": "m67",
-      "date": "2026-05-22",
-      "team1": "srh",
-      "team2": "rcb",
-      "venue": "Hyderabad"
-    },
     {
       "id": "m68",
       "date": "2026-05-23",
